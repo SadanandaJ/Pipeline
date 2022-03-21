@@ -1,20 +1,26 @@
 pipeline {
     agent any
+    tools{
+        maven 'maven3.8'
+    }
 
     stages {
         stage('checkout') {
             steps {
                 echo 'This is cloning'
+                git branch: 'main', credentialsId: 'ec706aa6-a70d-474d-b918-ab0bcded6bfd', url: 'https://github.com/SadanandaJ/Pipeline.git'
             }
         }
         stage('Build') {
             steps {
                 echo 'This is building mvn'
+                sh 'mvn clean install'
             }
         }
-        stage('Deployment') {
+        stage('test') {
             steps {
-                echo 'Deploying application'
+                echo 'Doing some test'
+                sh 'mvn test'
             }
         }
     }
