@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                echo 'This is cloning'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'This is building mvn'
+            }
+        }
+        stage('Deployment') {
+            steps {
+                echo 'Deploying application'
+            }
+        }
+    }
+}
